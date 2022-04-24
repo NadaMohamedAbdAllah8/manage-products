@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="formdiv">
-          <form action="{{route('login-admin')}}" method="POST">
+          <form action="{{route('admin/login')}}" method="POST">
                     @csrf
                     <h1>Admin Login</h1>
                     <hr>

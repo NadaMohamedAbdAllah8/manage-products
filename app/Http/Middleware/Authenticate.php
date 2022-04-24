@@ -44,7 +44,7 @@ class Authenticate extends Middleware
             }
 
             if (reset($this->guards) === 'admin') {
-                return url('/login-admin');
+                return url('/admin/login');
             }
 
         }
