@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request)
     {
@@ -17,14 +18,14 @@ class UserController extends Controller
         ]);
 
         // Check email
-        $user = User::where('name', $fields['name'])->first();
+        $admin = Admin::where('name', $fields['name'])->first();
 
         // Check password
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
+        if (!$admin || !Hash::check($fields['password'], $admin->password)) {
             return back()->with('error', 'Bad credentials');
         }
 
-        if (Auth::guard('user')->attempt(['name' => request('name'),
+        if (Auth::guard('admin')->attempt(['name' => request('name'),
             'password' => request('password')])) {
 
             return redirect()->route('task.create')
@@ -38,7 +39,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('user')->logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->flush();
 
