@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Admin extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    protected $guard = 'user';
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -42,9 +37,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function favoriteProducts()
-    {
-        return $this->belongsToMany(Product::class, 'user_favorite_products', 'user_id', 'product_id');
-    }
 }
