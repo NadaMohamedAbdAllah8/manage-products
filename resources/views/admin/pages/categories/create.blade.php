@@ -19,7 +19,7 @@
             <a href="{{ route('admin.category.index')}}" class="btn btn-primary actionbtn">
                 Back
             </a>
-            <button type="submit" class="actionbtn primary">Create</button>
+            <button type="submit" class="actionbtn btn btn-primary">Create</button>
 
         </form>
     </div>
