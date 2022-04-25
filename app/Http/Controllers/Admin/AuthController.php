@@ -30,7 +30,7 @@ class AuthController extends Controller
 
             return
             //view('admin.pages.index')
-            redirect()->route('/admin/index')
+            redirect()->route('admin.index')
                 ->with('success', 'Logged In Successfully');
 
         } else {

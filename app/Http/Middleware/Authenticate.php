@@ -40,11 +40,11 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             if (reset($this->guards) === 'user') {
-                return url('/login');
+                return route('login');
             }
 
             if (reset($this->guards) === 'admin') {
-                return url('/admin/login');
+                return route('admin.login');
             }
 
         }

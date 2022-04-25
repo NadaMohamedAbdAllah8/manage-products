@@ -8,9 +8,9 @@
 
 <div class=" formdiv">
 
-          <a href="{{route('product.product')}}" style="display: block">Products</a>
+          <a href="{{route('admin.product.index')}}" style="display: block">Products</a>
 
-          <a href="{{route('product.product')}}" style="display: block">Categories</a>
+          <a href="{{route('admin.category.index')}}" style="display: block">Categories</a>
 </div>
 
 @endsection

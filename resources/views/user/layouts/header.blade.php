@@ -5,7 +5,8 @@
     <?php echo Auth::guard('user')->user()->name; ?>
   </span>
 
-  <form id="logout_form" action="{{url('/user/logout')}}" method="post" style="display: inline;margin:8px;padding:2px;">
+  <form id="logout_form" action="{{route('user.logout')}}" method="post"
+    style="display: inline;margin:8px;padding:2px;">
     @csrf
     <a href="javascript:{}" onclick="document.getElementById('logout_form').submit();" class="actionbtn"
       style="width:7%;margin:8px;">
