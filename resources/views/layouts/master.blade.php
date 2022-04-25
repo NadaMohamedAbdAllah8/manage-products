@@ -47,4 +47,5 @@ License: You must have a valid license purchased only from themeforest(the above
           @yield('content')
 
           {{-- scrips --}}
+          @yield('scripts')
 </body>
