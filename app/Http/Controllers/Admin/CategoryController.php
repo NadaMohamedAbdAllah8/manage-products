@@ -52,19 +52,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
         ]);
 
         try {
             Category::create($request->all());
 
-            if ($request->pagination != '') {
-                $url = route('admin.category.index') .
-                '?pagination=' . $request->pagination;
-            } else {
-                $url = route('admin.category.index');
-            }
-            return redirect($url)->with('success', 'Successfully Added');
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Successfully Added');
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error' . $e->getMessage());
@@ -108,7 +103,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
         ]);
 
         try {
@@ -116,12 +111,7 @@ class CategoryController extends Controller
 
             $category->update($request->all());
 
-            if ($request->pagination != '') {
-                $url = route('admin.category.index') . '?pagination=' . $request->pagination;
-            } else {
-                $url = route('admin.category.index');
-            }
-            return redirect($url)->with('success', 'Successfully Updated');
+            return redirect()->route('admin.category.index')->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error' . $e->getMessage());
         }
@@ -140,12 +130,7 @@ class CategoryController extends Controller
 
             $category->delete();
 
-            if (isset($_GET['pagination'])) {
-                $url = route('admin.category.index') . '?pagination=' . $_GET['pagination'];
-            } else {
-                $url = route('admin.category.index');
-            }
-            return redirect($url)->with('success', 'Successfully Deleted');
+            return redirect()->route('admin.category.index')->with('success', 'Successfully Deleted');
         } catch (\Exception $e) {
             return redirect()->route('admin.category.index')
                 ->with('error', 'Error' . $e->getMessage());

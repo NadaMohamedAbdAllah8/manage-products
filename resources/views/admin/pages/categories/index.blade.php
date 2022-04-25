@@ -35,26 +35,17 @@
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $category['name'] }}</td>
                         <td>
-                            <a href="{{ route('admin.category.show',
-                                $category->id)}}" title="Show" class="">
+
+                            <a href="{{ route('admin.category.show',$category->id)}}" title="Show" class="">
                                 Show</a>
 
                             <a href="{{ route('admin.category.edit',
                              $category->id)}}" title="Edit" class="">
                                 Edit</a>
 
-
-                            {{-- <form>@csrf {{ method_field('PUT') }})
-                                <a onclick="return confirm('Are you sure?')" title="Delete"
-                                    href="{{ route('admin.category.destroy', $category->id)}}">
-                                    Delete
-                                </a>
-                            </form> --}}
-                            <?php $pagination= $_GET['pagination'] ?? config('global.defaultPagination');?>
-                            <form action="{{ route('admin.category.destroy',$category->id).'?pagination='.$pagination}}"
-                                method="POST" style="display: inline;">
+                            <form action="{{ route('admin.category.destroy',$category->id)}}" method="POST"
+                                style="display: inline;">
                                 @csrf {{ method_field('Delete') }}
-                                {{-- <input type="hidden" name="pagination" value="{{}}" /> --}}
 
                                 <button type="sumbit" class="btn-looklike-link" title=Delete
                                     onclick="return confirm('Are you sure?')"> Delete
@@ -71,7 +62,7 @@
                 @if($categories->hasPages())
                 <div class="d-flex align-items-center py-3">
                     <select class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light"
-                        id="pagination_options" style="width: 5%;">
+                        id="pagination_options" style="width:7%;">
                         <option value="{{config('global.defaultPagination')}}" @if(isset($_GET['pagination']))
                             @if($_GET['pagination']==config('global.defaultPagination')) selected @endif @endif>
                             {{config('global.defaultPagination')}}
