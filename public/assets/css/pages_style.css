@@ -73,3 +73,20 @@ a {
 .form-check {
     display: inline;
 }
+
+
+.btn-looklike-link {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: rgb(30, 144, 255);
+    cursor: pointer;
+}
+
+.btn-looklike-link:hover {
+    color: #069;
+    text-decoration: underline;
+}
