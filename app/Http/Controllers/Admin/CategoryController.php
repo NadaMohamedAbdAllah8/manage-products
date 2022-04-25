@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $pagiantionValue = isset($_GET['pagination']) ?? config('global.defaultPagination');
+        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+
+        // Debugbar::info($pagiantionValue);
 
         $categories = Category::paginate($pagiantionValue);
 
@@ -34,7 +36,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Create New Category',
+        ];
+
+        return view('admin.pages.categories.create', $data);
     }
 
     /**
@@ -45,7 +51,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        try {
+            Category::create($request->all());
+
+            if ($request->pagination != '') {
+                $url = route('admin.category.index') .
+                '?pagination=' . $request->pagination;
+            } else {
+                $url = route('admin.category.index');
+            }
+            return redirect($url)->with('success', 'Successfully Added');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+        }
     }
 
     /**
@@ -67,7 +90,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Edit Category Details',
+            'category' => Category::findOrFail($id),
+        ];
+
+        return view('admin.pages.categories.edit', $data);
     }
 
     /**
@@ -79,7 +107,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        try {
+            $category = Category::findOrFail($id);
+
+            $category->update($request->all());
+
+            if ($request->pagination != '') {
+                $url = route('admin.category.index') . '?pagination=' . $request->pagination;
+            } else {
+                $url = route('admin.category.index');
+            }
+            return redirect($url)->with('success', 'Successfully Updated');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+        }
     }
 
     /**
@@ -90,6 +135,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+
+            $category->delete();
+
+            if (isset($_GET['pagination'])) {
+                $url = route('admin.category.index') . '?pagination=' . $_GET['pagination'];
+            } else {
+                $url = route('admin.category.index');
+            }
+            return redirect($url)->with('success', 'Successfully Deleted');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.category.index')
+                ->with('error', 'Error' . $e->getMessage());
+        }
     }
 }

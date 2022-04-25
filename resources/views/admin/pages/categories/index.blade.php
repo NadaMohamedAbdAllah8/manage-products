@@ -43,9 +43,23 @@
                              $category->id)}}" title="Edit" class="">
                                 Edit</a>
 
-                            <a onclick="return confirm('Are you sure?')" title="Delete"
-                                href="{{ route('admin.category.destroy', $category->id)}}">
-                                Delete</a>
+
+                            {{-- <form>@csrf {{ method_field('PUT') }})
+                                <a onclick="return confirm('Are you sure?')" title="Delete"
+                                    href="{{ route('admin.category.destroy', $category->id)}}">
+                                    Delete
+                                </a>
+                            </form> --}}
+                            <?php $pagination= $_GET['pagination'] ?? config('global.defaultPagination');?>
+                            <form action="{{ route('admin.category.destroy',$category->id).'?pagination='.$pagination}}"
+                                method="POST" style="display: inline;">
+                                @csrf {{ method_field('Delete') }}
+                                {{-- <input type="hidden" name="pagination" value="{{}}" /> --}}
+
+                                <button type="sumbit" class="btn-looklike-link" title=Delete
+                                    onclick="return confirm('Are you sure?')"> Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
