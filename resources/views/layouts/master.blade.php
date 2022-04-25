@@ -47,5 +47,6 @@ License: You must have a valid license purchased only from themeforest(the above
           @yield('content')
 
           {{-- scrips --}}
+          <script type=" text/javascript" src="{{ asset('assets/js/make-input-read-only.js') }}"></script>
           @yield('scripts')
 </body>

@@ -74,9 +74,20 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        try {
+            $category = Category::findOrFail($id);
 
+            $data = [
+                'title' => 'Category Details',
+                'category' => $category,
+                'products' => $category->products()->paginate(config('global.defaultPagination')),
+            ];
+
+            return view('admin.pages.categories.show', $data);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -113,7 +124,7 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.category.index')->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
         }
     }
 
