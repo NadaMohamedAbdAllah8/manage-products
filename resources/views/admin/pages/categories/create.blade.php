@@ -14,7 +14,7 @@
             <hr>
 
             <label for="username"><b>Category Name</b></label>
-            <input type="text" placeholder="Enter Category Name" name="name" id="username" required>
+            <input type="text" placeholder="Enter Category Name" name="name" required>
 
             <a href="{{ route('admin.category.index')}}" class="btn btn-primary actionbtn">
                 Back

@@ -12,7 +12,7 @@
         <hr>
 
         <label for="username"><b>Category Name</b></label>
-        <input type="text" placeholder="Enter Category Name" class="read-only-input" id="username"
+        <input type="text" placeholder="Enter Category Name" class="read-only-input"
             value="{{old('name',$category->name)}}" required>
 
         <label>Category's Products</label>
