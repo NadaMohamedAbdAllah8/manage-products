@@ -5,6 +5,10 @@
     <?php echo Auth::guard('admin')->user()->name; ?>
   </span>
 
+  <a href="{{route('admin.index')}}" class="actionbtn" style="float:left;width:10%;margin:8px;">
+    Back to index
+  </a>
+
   <form id="logout_form" action="{{route('admin.logout')}}" method="post"
     style="display: inline;margin:8px;padding:2px;">
     @csrf
