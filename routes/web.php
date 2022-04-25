@@ -56,6 +56,18 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
     Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
         Route::get('index', 'App\Http\Controllers\Admin\ProductController@index')
             ->name('index');
+
+        Route::get('index', 'App\Http\Controllers\Admin\ProductController@index')
+            ->name('index');
+
+        Route::get('create', 'App\Http\Controllers\Admin\ProductController@create')
+            ->name('create');
+
+        Route::post('store', 'App\Http\Controllers\Admin\ProductController@store')
+            ->name('store');
+
+        Route::get('show/{id}', 'App\Http\Controllers\Admin\ProductController@show')
+            ->name('show');
     });
 
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');

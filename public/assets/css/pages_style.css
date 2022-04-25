@@ -90,3 +90,10 @@ a {
     color: #069;
     text-decoration: underline;
 }
+
+select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+}
