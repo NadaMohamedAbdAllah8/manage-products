@@ -9,7 +9,7 @@
 <div class="container">
     <div class="formdiv">
         <form action="{{route('admin.category.update',$category->id)}}" method="POST">
-            @csrf {{ method_field('PUT') }})
+            @csrf {{ method_field('PUT') }}
             <h1>Edit Category</h1>
             <hr>
 
