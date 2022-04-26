@@ -25,12 +25,11 @@ class AuthController extends Controller
             return back()->with('error', 'Bad credentials');
         }
 
+        // Login
         if (Auth::guard('admin')->attempt(['name' => request('name'),
             'password' => request('password')])) {
 
-            return
-            //view('admin.pages.index')
-            redirect()->route('admin.index')
+            return redirect()->route('admin.index')
                 ->with('success', 'Logged In Successfully');
 
         } else {

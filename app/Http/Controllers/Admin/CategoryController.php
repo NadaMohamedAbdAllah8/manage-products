@@ -15,8 +15,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // Debugbar::info($pagiantionValue);
-
         $categories = Category::paginate(config('global.defaultPagination'));
 
         $data = [
@@ -60,7 +58,7 @@ class CategoryController extends Controller
                 ->with('success', 'Successfully Added');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
         }
     }
 
@@ -73,6 +71,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
+            // Get products table pagiantion if it is set
             $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
 
             $category = Category::findOrFail($id);
@@ -96,12 +95,16 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            'title' => 'Edit Category Details',
-            'category' => Category::findOrFail($id),
-        ];
+        try {
+            $data = [
+                'title' => 'Edit Category Details',
+                'category' => Category::findOrFail($id),
+            ];
 
-        return view('admin.pages.categories.edit', $data);
+            return view('admin.pages.categories.edit', $data);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+        }
     }
 
     /**
@@ -122,7 +125,8 @@ class CategoryController extends Controller
 
             $category->update($request->all());
 
-            return redirect()->route('admin.category.index')->with('success', 'Successfully Updated');
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error ' . $e->getMessage());
         }
@@ -141,10 +145,11 @@ class CategoryController extends Controller
 
             $category->delete();
 
-            return redirect()->route('admin.category.index')->with('success', 'Successfully Deleted');
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Successfully Deleted');
         } catch (\Exception $e) {
             return redirect()->route('admin.category.index')
-                ->with('error', 'Error' . $e->getMessage());
+                ->with('error', 'Error ' . $e->getMessage());
         }
     }
 }
