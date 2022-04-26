@@ -2,7 +2,7 @@
 
 A mini-project to manage products using Laravel.
 
-There are two roles: admin, user
+There are two users: admin, user
 
 ### Admins can
 
@@ -26,7 +26,7 @@ There are two roles: admin, user
 
 
 
-### User can
+### Users can
 
 -Login
 
@@ -34,22 +34,22 @@ There are two roles: admin, user
 
 -View products that have an assigned category
 
--Favorite a product 
-
--View the favorite products list
-
 -Search products
 
 - By product name
 - By category name
 
+-Favorite a product 
+
+-View the favorite products list
+
 
 
 *Note*
 
-to login for the admin go to http://127.0.0.1:8000/admin/login, and use admin, 123 to login
+to login for the admin go to http://127.0.0.1:8000/admin/login (using default host and port), or host:port/admin/login (custom host and port), and use admin, 123 to login
 
-to login for the user go to http://127.0.0.1:8000/, and use user, 123 to login
+to login for the user go to http://127.0.0.1:8000/  (using default host and port)or host:port , and use user (custom host and port),123 to login
 
 ## Installation
 
