@@ -68,35 +68,6 @@
             </table>
             <div class="d-flex justify-content-center">
                 {!! $products->appends($_GET)->links() !!}
-
-                {{-- @if($products->hasPages())
-                <div class="d-flex align-items-center py-3">
-                    <select class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light"
-                        id="pagination_options" style="width:7%;">
-                        <option value="{{config('global.defaultPagination')}}" @if(isset($_GET['pagination']))
-                            @if($_GET['pagination']==config('global.defaultPagination')) selected @endif @endif>
-                            {{config('global.defaultPagination')}}
-                        </option>
-
-                        <option value="{{config('global.paginationFirstIncrease')}}" @if(isset($_GET['pagination']) &&
-                            $_GET['pagination']==config('global.paginationFirstIncrease')) selected @endif>
-                            {{config('global.paginationFirstIncrease')}}
-                        </option>
-
-                        <option value="{{config('global.paginationSecondIncrease')}}" @if(isset($_GET['pagination'])&&
-                            $_GET['pagination']==config('global.paginationSecondIncrease')) selected @endif>
-                            {{config('global.paginationSecondIncrease')}}
-                        </option>
-
-                        <option value="{{config('global.paginationThirdIncrease')}}" @if(isset($_GET['pagination']) &&
-                            $_GET['pagination']==config('global.paginationThirdIncrease')) selected @endif>
-                            {{config('global.paginationThirdIncrease')}}
-                        </option>
-
-                    </select>
-                </div>
-                @endif --}}
-
             </div>
             @else
             No records
@@ -105,38 +76,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-{{-- <script>
-    $( "#pagination_options" ).on( 'change', function () {
-        var selectedPagination = $( this ).find( ":selected" ).val();
-
-        var current_url = window.location.href.split( '?' );
-
-        if ( current_url[ 0 ] ) {
-            var url = current_url[ 0 ] + "?page=1&pagination=" + selectedPagination;
-        } else {
-            var url = window.location.href + "?page=1&pagination=" + selectedPagination;
-        }
-
-        // if ( getUrlVars()[ 'product_name' ] ) {
-        // url += "&product_name=" + getUrlVars()[ 'product_name' ];
-        // }
-        
-        // if ( getUrlVars()[ 'category_id' ] ) {
-        // url += "&category_id=" + getUrlVars()[ 'category_id' ];
-        // }
-     
-       window.location.href = url;
-    } );
-
-    function getUrlVars() {
-    var vars = [],
-    hash;
-    var hashes = window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ).split( '&' );
-    for ( var i = 0; i < hashes.length; i++ ) { hash=hashes[ i ].split( '=' ); vars.push( hash[ 0 ] ); vars[ hash[ 0 ]
-        ]=hash[ 1 ]; } return vars; }
-        
-</script> --}}
 @endsection

@@ -20,22 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
-        $limit = $_GET['pagination'] ?? config('global.defaultPagination');
-        $offset = $_GET['page'] ?? 1;
-
         $products = Product::where('category_id', '!=', null)
             ->whereHas('category', function ($query) {
                 $query->where('deleted_at', '=', null);
-            })->paginate($pagiantionValue);
-
-        // $productsRaw = DB::select(DB::raw('SELECT * FROM `products` join categories cat
-        // on products.category_id=cat.id
-        // WHERE `category_id` is not null and cat.deleted_at is null limit 3 OFFSET 6;'));
-        //dd($productsRaw);
-        /**SELECT * FROM `products` join categories cat
-        on products.category_id=cat.id
-        WHERE `category_id` is not null and cat.deleted_at is null limit 3 OFFSET 6; */
+            })->paginate(config('global.defaultPagination'));
 
         $data = [
             'title' => 'Products',

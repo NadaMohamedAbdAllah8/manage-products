@@ -43,7 +43,7 @@
                 Back
             </a>
             <div class="d-flex justify-content-center">
-                {!! $products->links() !!}
+                {!! $products->render() !!}
 
                 @if($products->hasPages())
                 <div class="d-flex align-items-center py-3">
