@@ -25,6 +25,7 @@ class AuthController extends Controller
             return back()->with('error', 'Bad credentials');
         }
 
+        // Login
         if (Auth::guard('user')->attempt(['name' => request('name'),
             'password' => request('password')])) {
 

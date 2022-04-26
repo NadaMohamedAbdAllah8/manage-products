@@ -28,7 +28,8 @@ class ProductController extends Controller
         $data = [
             'title' => 'Products',
             'products' => $products,
-            'categories' => DB::select(DB::raw('SELECT * FROM categories where deleted_at is null')),
+            'categories' =>
+            DB::select(DB::raw('SELECT * FROM categories where deleted_at is null')),
         ];
 
         return view('user.pages.products.index', $data);
