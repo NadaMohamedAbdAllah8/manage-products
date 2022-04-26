@@ -13,7 +13,9 @@
 
 <div class="container">
     <div class="card">
-        <form id="search-form" method="GET" action="{{ route('user.product.search') }}">
+        <?php $pagination= $_GET['pagination']??config('global.defaultPagination');?>
+        <form id="search-form" method="GET" action="{{ route('user.product.search').
+        '?pagination='.$pagination }}">
             <div class="input-group mb-3">
                 <input form="search-form" name="product_name" type="text" class="form-control"
                     placeholder="Product Name"
@@ -109,7 +111,7 @@
 <script>
     $( "#pagination_options" ).on( 'change', function () {
         var selectedPagination = $( this ).find( ":selected" ).val();
-
+console.log('selectedPagination'+selectedPagination);
         var current_url = window.location.href.split( '?' );
 
         if ( current_url[ 0 ] ) {
@@ -117,8 +119,24 @@
         } else {
             var url = window.location.href + "?page=1&pagination=" + selectedPagination;
         }
+
+        if ( getUrlVars()[ 'product_name' ] ) {
+        url += "&product_name=" + getUrlVars()[ 'product_name' ];
+        }
+        
+        if ( getUrlVars()[ 'category_id' ] ) {
+        url += "&category_id=" + getUrlVars()[ 'category_id' ];
+        }
      
        window.location.href = url;
     } );
+
+    function getUrlVars() {
+    var vars = [],
+    hash;
+    var hashes = window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ).split( '&' );
+    for ( var i = 0; i < hashes.length; i++ ) { hash=hashes[ i ].split( '=' ); vars.push( hash[ 0 ] ); vars[ hash[ 0 ]
+        ]=hash[ 1 ]; } return vars; }
+        
 </script>
 @endsection

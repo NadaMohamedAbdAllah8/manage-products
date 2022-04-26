@@ -105,7 +105,7 @@ class ProductController extends Controller
 
         if ($response['status'] == 'success') {
             return view('user.pages.products.index', $response);
-        } else {
+        } else { //dd($response);
             return redirect(route('user.product.index'))->with('error', $response['error']);
         }
     }
@@ -113,6 +113,8 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $categories = Category::all();
+
+        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
 
         $products = Product::where('category_id', '!=', null)
             ->whereHas('category', function ($query) {
@@ -137,14 +139,15 @@ class ProductController extends Controller
             return array(
                 'title' => 'Products',
                 'status' => 'success',
-                'products' => $products,
+                'products' => $products->paginate($pagiantionValue),
                 'categories' => $categories,
             );
         } catch (\Exception $e) {
             return array(
                 'title' => 'Products',
                 'status' => 'error',
-                'products' => $products,
+                'error' => $e->getMessage(),
+                'products' => $products->paginate($pagiantionValue),
                 'categories' => $categories,
             );
         }
