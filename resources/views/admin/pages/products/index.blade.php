@@ -41,7 +41,7 @@
             <div class="d-flex justify-content-center">
                 {!! $products->render() !!}
 
-                @if($products->hasPages())
+                {{-- @if($products->hasPages())
                 <div class="d-flex align-items-center py-3">
                     <select class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light"
                         id="pagination_options" style="width:7%;">
@@ -67,8 +67,8 @@
 
                     </select>
                 </div>
+                @endif --}}
 
-                @endif
             </div>
             @else
             No records
@@ -80,7 +80,7 @@
 @endsection
 
 @section('scripts')
-<script>
+{{-- <script>
     $( "#pagination_options" ).on( 'change', function () {
         var selectedPagination = $( this ).find( ":selected" ).val();
 
@@ -94,5 +94,5 @@
      
        window.location.href = url;
     } );
-</script>
+</script> --}}
 @endsection

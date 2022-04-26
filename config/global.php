@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'defaultPagination' => 3,
-    'paginationFirstIncrease' => 5,
-    'paginationSecondIncrease' => 10,
-    'paginationThirdIncrease' => 15,
+    'defaultPagination' => 5,
+    'paginationFirstIncrease' => 10,
+    'paginationSecondIncrease' => 15,
+    'paginationThirdIncrease' => 20,
 ]
 
 ?>

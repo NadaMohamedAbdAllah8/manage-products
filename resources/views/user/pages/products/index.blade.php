@@ -14,8 +14,8 @@
 <div class="container">
     <div class="card">
         <?php $pagination= $_GET['pagination']??config('global.defaultPagination');?>
-        <form id="search-form" method="GET" action="{{ route('user.product.search').
-        '?pagination='.$pagination }}">
+
+        <form id="search-form" method="GET" action="{{ route('user.product.search')}}">
             <div class="input-group mb-3">
                 <input form="search-form" name="product_name" type="text" class="form-control"
                     placeholder="Product Name"
@@ -32,7 +32,7 @@
                 </select>
             </div>
             <button type="submit" form="search-form" class="btn btn-primary">Search</button>
-            <a class="btn btn-primary" href="{{ route('user.product.index') }}">
+            <a class="btn btn-primary" href="{{ route('user.product.index').'?pagination='.$pagination }}">
                 Remove Search</a>
 
         </form>
@@ -67,9 +67,9 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {!! $products->render() !!}
+                {!! $products->appends($_GET)->links() !!}
 
-                @if($products->hasPages())
+                {{-- @if($products->hasPages())
                 <div class="d-flex align-items-center py-3">
                     <select class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light"
                         id="pagination_options" style="width:7%;">
@@ -95,8 +95,8 @@
 
                     </select>
                 </div>
+                @endif --}}
 
-                @endif
             </div>
             @else
             No records
@@ -108,10 +108,10 @@
 @endsection
 
 @section('scripts')
-<script>
+{{-- <script>
     $( "#pagination_options" ).on( 'change', function () {
         var selectedPagination = $( this ).find( ":selected" ).val();
-console.log('selectedPagination'+selectedPagination);
+
         var current_url = window.location.href.split( '?' );
 
         if ( current_url[ 0 ] ) {
@@ -120,13 +120,13 @@ console.log('selectedPagination'+selectedPagination);
             var url = window.location.href + "?page=1&pagination=" + selectedPagination;
         }
 
-        if ( getUrlVars()[ 'product_name' ] ) {
-        url += "&product_name=" + getUrlVars()[ 'product_name' ];
-        }
+        // if ( getUrlVars()[ 'product_name' ] ) {
+        // url += "&product_name=" + getUrlVars()[ 'product_name' ];
+        // }
         
-        if ( getUrlVars()[ 'category_id' ] ) {
-        url += "&category_id=" + getUrlVars()[ 'category_id' ];
-        }
+        // if ( getUrlVars()[ 'category_id' ] ) {
+        // url += "&category_id=" + getUrlVars()[ 'category_id' ];
+        // }
      
        window.location.href = url;
     } );
@@ -138,5 +138,5 @@ console.log('selectedPagination'+selectedPagination);
     for ( var i = 0; i < hashes.length; i++ ) { hash=hashes[ i ].split( '=' ); vars.push( hash[ 0 ] ); vars[ hash[ 0 ]
         ]=hash[ 1 ]; } return vars; }
         
-</script>
+</script> --}}
 @endsection

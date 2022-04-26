@@ -75,12 +75,14 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
+            $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+
             $category = Category::findOrFail($id);
 
             $data = [
                 'title' => 'Category Details',
                 'category' => $category,
-                'products' => $category->products()->paginate(config('global.defaultPagination')),
+                'products' => $category->products()->paginate($pagiantionValue),
             ];
 
             return view('admin.pages.categories.show', $data);

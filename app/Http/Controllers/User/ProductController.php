@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserFavoriteProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -20,16 +21,26 @@ class ProductController extends Controller
     public function index()
     {
         $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+        $limit = $_GET['pagination'] ?? config('global.defaultPagination');
+        $offset = $_GET['page'] ?? 1;
 
         $products = Product::where('category_id', '!=', null)
             ->whereHas('category', function ($query) {
                 $query->where('deleted_at', '=', null);
             })->paginate($pagiantionValue);
 
+        // $productsRaw = DB::select(DB::raw('SELECT * FROM `products` join categories cat
+        // on products.category_id=cat.id
+        // WHERE `category_id` is not null and cat.deleted_at is null limit 3 OFFSET 6;'));
+        //dd($productsRaw);
+        /**SELECT * FROM `products` join categories cat
+        on products.category_id=cat.id
+        WHERE `category_id` is not null and cat.deleted_at is null limit 3 OFFSET 6; */
+
         $data = [
             'title' => 'Products',
             'products' => $products,
-            'categories' => Category::all(),
+            'categories' => DB::select(DB::raw('SELECT * FROM categories where deleted_at is null')),
         ];
 
         return view('user.pages.products.index', $data);
@@ -84,6 +95,9 @@ class ProductController extends Controller
         try {
             $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
 
+            // the user can view all the favorite products regardless of whether that product
+            // has a category or not; as the category can be deleted
+
             $userFavoritesProducts = Auth::guard('user')->user()
                 ->favoriteProducts()->paginate($pagiantionValue);
 
@@ -105,7 +119,7 @@ class ProductController extends Controller
 
         if ($response['status'] == 'success') {
             return view('user.pages.products.index', $response);
-        } else { //dd($response);
+        } else {
             return redirect(route('user.product.index'))->with('error', $response['error']);
         }
     }
@@ -114,7 +128,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+        $pagiantionValue = config('global.defaultPagination');
 
         $products = Product::where('category_id', '!=', null)
             ->whereHas('category', function ($query) {
