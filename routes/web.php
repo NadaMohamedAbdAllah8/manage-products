@@ -36,12 +36,16 @@ Route::group(['middleware' => ['auth:user']], function () {
     Route::post('user.logout', 'App\Http\Controllers\User\AuthController@logout')
         ->name('user.logout');
 
-    Route::get('user.index', 'App\Http\Controllers\User\IndexController@index')
-        ->name('user.index');
-
     Route::group(['prefix' => 'user.product', 'as' => 'user.product.'], function () {
         Route::get('index', 'App\Http\Controllers\User\ProductController@index')
             ->name('index');
+
+        Route::post('favorite', 'App\Http\Controllers\User\ProductController@favorite')
+            ->name('favorite');
+
+        Route::get('show-favorites', 'App\Http\Controllers\User\ProductController@showFavorites')
+            ->name('show-favorites');
+
     });
 });
 
