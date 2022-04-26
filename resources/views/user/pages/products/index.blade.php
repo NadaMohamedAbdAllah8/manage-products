@@ -13,6 +13,27 @@
 
 <div class="container">
     <div class="card">
+        <form id="search-form" method="GET" action="{{ route('user.product.search') }}">
+            <div class="input-group mb-3">
+                <input form="search-form" name="product_name" type="text" class="form-control"
+                    placeholder="Product Name"
+                    value="@if(isset($_GET['product_name'])){{ $_GET['product_name'] }}@endif" aria-label="product_name"
+                    aria-describedby="basic-addon1">
+
+                <select form="search-form" multiple name="category_id[]">
+                    <option>Categories</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}" @if (isset($_GET['category_id']) &&
+                        $_GET['category_id']==$category->id) selected
+                        @endif>{{$category->name}}
+                        @endforeach
+                </select>
+            </div>
+            <button type="submit" form="search-form" class="btn btn-primary">Search</button>
+            <a class="btn btn-primary" href="{{ route('user.product.index') }}">
+                Remove Search</a>
+
+        </form>
         <div class="card-body">
             @if(count($products) != 0)
             <table class="table table-dark">

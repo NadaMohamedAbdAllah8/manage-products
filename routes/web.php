@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth:user']], function () {
         Route::get('show-favorites', 'App\Http\Controllers\User\ProductController@showFavorites')
             ->name('show-favorites');
 
+        Route::get('search', 'App\Http\Controllers\User\ProductController@searchForm')
+            ->name('search');
     });
 });
 

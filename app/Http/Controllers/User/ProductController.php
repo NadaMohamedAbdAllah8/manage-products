@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\UserFavoriteProduct;
@@ -28,6 +29,7 @@ class ProductController extends Controller
         $data = [
             'title' => 'Products',
             'products' => $products,
+            'categories' => Category::all(),
         ];
 
         return view('user.pages.products.index', $data);
@@ -93,6 +95,58 @@ class ProductController extends Controller
             return view('user.pages.products.show-favorites', $data);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+        }
+    }
+
+    //searchForm
+    public function searchForm(Request $request)
+    {
+        $response = $this->search($request);
+
+        if ($response['status'] == 'success') {
+            return view('user.pages.products.index', $response);
+        } else {
+            return redirect(route('user.product.index'))->with('error', $response['error']);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+
+        $products = Product::where('category_id', '!=', null)
+            ->whereHas('category', function ($query) {
+                $query->where('deleted_at', '=', null);
+            });
+
+        try {
+            $productName = $request->product_name;
+
+            $categoriesId = $request->category_id;
+
+            if (!is_null($productName)) {
+                $products = $products->where('name', 'like', '%' . $productName . '%');
+            }
+
+            if (isset($categoriesId)) {
+                $products = $products->whereHas('category', function ($query) use ($categoriesId) {
+                    $query->whereIn('id', $categoriesId);
+                });
+            }
+
+            return array(
+                'title' => 'Products',
+                'status' => 'success',
+                'products' => $products,
+                'categories' => $categories,
+            );
+        } catch (\Exception $e) {
+            return array(
+                'title' => 'Products',
+                'status' => 'error',
+                'products' => $products,
+                'categories' => $categories,
+            );
         }
     }
 }
