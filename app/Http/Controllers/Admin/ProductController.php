@@ -16,18 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
-
-        // Debugbar::info($pagiantionValue);
-
-        $products = Product::paginate($pagiantionValue);
+        $products = Product::paginate(config('global.defaultPagination'));
 
         $data = [
             'title' => 'Products',
             'products' => $products,
         ];
-        // dd($data);
-        // dd(count($data['products']));
 
         return view('admin.pages.products.index', $data);
     }

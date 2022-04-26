@@ -59,34 +59,6 @@
             <div class="d-flex justify-content-center">
                 {!! $categories->render() !!}
 
-                {{-- @if($categories->hasPages())
-                <div class="d-flex align-items-center py-3">
-                    <select class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light"
-                        id="pagination_options" style="width:7%;">
-                        <option value="{{config('global.defaultPagination')}}" @if(isset($_GET['pagination']))
-                            @if($_GET['pagination']==config('global.defaultPagination')) selected @endif @endif>
-                            {{config('global.defaultPagination')}}
-                        </option>
-
-                        <option value="{{config('global.paginationFirstIncrease')}}" @if(isset($_GET['pagination']) &&
-                            $_GET['pagination']==config('global.paginationFirstIncrease')) selected @endif>
-                            {{config('global.paginationFirstIncrease')}}
-                        </option>
-
-                        <option value="{{config('global.paginationSecondIncrease')}}" @if(isset($_GET['pagination'])&&
-                            $_GET['pagination']==config('global.paginationSecondIncrease')) selected @endif>
-                            {{config('global.paginationSecondIncrease')}}
-                        </option>
-
-                        <option value="{{config('global.paginationThirdIncrease')}}" @if(isset($_GET['pagination']) &&
-                            $_GET['pagination']==config('global.paginationThirdIncrease')) selected @endif>
-                            {{config('global.paginationThirdIncrease')}}
-                        </option>
-
-                    </select>
-                </div>
-                @endif --}}
-
             </div>
             @else
             No records
@@ -96,22 +68,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-{{-- <script>
-    $( "#pagination_options" ).on( 'change', function () {
-        var selectedPagination = $( this ).find( ":selected" ).val();
-
-        var current_url = window.location.href.split( '?' );
-
-        if ( current_url[ 0 ] ) {
-            var url = current_url[ 0 ] + "?page=1&pagination=" + selectedPagination;
-        } else {
-            var url = window.location.href + "?page=1&pagination=" + selectedPagination;
-        }
-     
-       window.location.href = url;
-    } );
-</script> --}}
 @endsection

@@ -15,11 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
-
         // Debugbar::info($pagiantionValue);
 
-        $categories = Category::paginate($pagiantionValue);
+        $categories = Category::paginate(config('global.defaultPagination'));
 
         $data = [
             'title' => 'Categories',
