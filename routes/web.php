@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:user']], function () {
     Route::post('user.logout', 'App\Http\Controllers\User\AuthController@logout')
         ->name('user.logout');
 
-    Route::group(['prefix' => 'user.product', 'as' => 'user.product.'], function () {
+    Route::group(['prefix' => 'user/product', 'as' => 'user.product.'], function () {
         Route::get('index', 'App\Http\Controllers\User\ProductController@index')
             ->name('index');
 
