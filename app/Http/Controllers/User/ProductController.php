@@ -51,7 +51,7 @@ class ProductController extends Controller
                 where('product_id', $productId)
                 ->where('user_id', $userId)->first();
 
-            if (is_null($userFavoriteProductExist)) {
+            if (!is_null($userFavoriteProductExist)) {
                 return redirect()->route('user.product.index')
                     ->with('error', 'Added Already');
             }
