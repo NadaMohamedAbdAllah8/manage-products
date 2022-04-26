@@ -11,14 +11,13 @@
     Favorites Product list
 </a>
 
-<div class="container">
+<div class="container formdiv">
     <div class="card">
-        <?php $pagination= $_GET['pagination']??config('global.defaultPagination');?>
 
         <form id="search-form" method="GET" action="{{ route('user.product.search')}}">
             <div class="input-group mb-3">
                 <input form="search-form" name="product_name" type="text" class="form-control"
-                    placeholder="Product Name"
+                    placeholder="Product Name" style="width: 90%"
                     value="@if(isset($_GET['product_name'])){{ $_GET['product_name'] }}@endif" aria-label="product_name"
                     aria-describedby="basic-addon1">
 
@@ -32,7 +31,7 @@
                 </select>
             </div>
             <button type="submit" form="search-form" class="btn btn-primary">Search</button>
-            <a class="btn btn-primary" href="{{ route('user.product.index').'?pagination='.$pagination }}">
+            <a class="btn btn-primary" href="{{ route('user.product.index') }}">
                 Remove Search</a>
 
         </form>
