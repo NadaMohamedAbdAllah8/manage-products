@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if (Auth::guard('user')->attempt(['name' => request('name'),
             'password' => request('password')])) {
-            //dd('hi');
+
             return redirect()->route('user.product.index')
                 ->with('success', 'Logged In Successfully');
 
