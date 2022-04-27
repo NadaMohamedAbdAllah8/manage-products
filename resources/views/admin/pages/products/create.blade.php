@@ -18,7 +18,7 @@
 
             <label><b>Category</b></label>
             <select name="category_id">
-                <option selected>Open this select menu</option>
+                <option selected value="">Categories</option>
                 @foreach($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
