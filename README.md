@@ -58,6 +58,7 @@ Use the composer manager, apply these steps at the first time
 composer install
 
 #### Creating, and seeding the database
+After creating .env file, set the database name in it
 
 php artisan migrate
 
