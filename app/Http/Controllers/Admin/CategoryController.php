@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Categories',
             'categories' => $categories,
-        ];
+            'message' => 'Hello!'];
 
         return view('admin.pages.categories.index', $data);
     }

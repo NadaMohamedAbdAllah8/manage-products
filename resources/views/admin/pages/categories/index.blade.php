@@ -7,8 +7,11 @@
 
 @section('content')
 
+{{-- <x-alert id="my-alert" role="alert" type="success" style="background-color: blueviolet">
+    {{$message}}
+</x-alert> --}}
 
-
+<x-alert :message="$message" />
 
 <a href="{{ route('admin.category.create')}}" class="btn btn-primary actionbtn">
     Create Category
