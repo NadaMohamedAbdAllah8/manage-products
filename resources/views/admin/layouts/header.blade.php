@@ -2,7 +2,7 @@
   <span style="margin-top:20px;padding:auto;         
         display: inline-block;">
     <span style="color: rgba(128, 128, 128, 0.689);"> Logged in as</span>
-    <?php echo Auth::guard('admin')->user()->name; ?>
+    <?php echo $adminName ?>
   </span>
 
   <a href="{{route('admin.index')}}" class="actionbtn" style="float:left;width:10%;margin:8px;">
