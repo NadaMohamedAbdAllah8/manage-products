@@ -30,5 +30,11 @@ class ViewComposerServiceProvider extends ServiceProvider
             ]);
         });
 
+        view()->composer('user.layouts.header', function ($view) {
+            $view->with([
+                'userName' => Auth::guard('user')->user()->name,
+            ]);
+        });
+
     }
 }

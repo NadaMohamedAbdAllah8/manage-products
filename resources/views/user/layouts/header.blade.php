@@ -2,7 +2,7 @@
   <span style="margin-top:20px;padding:auto;         
         display: inline-block;">
     <span style="color: rgba(128, 128, 128, 0.689);"> Logged in as</span>
-    <?php echo Auth::guard('user')->user()->name; ?>
+    <?php echo $userName; ?>
   </span>
 
   <form id="logout_form" action="{{route('user.logout')}}" method="post"
