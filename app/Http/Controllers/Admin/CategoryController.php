@@ -54,11 +54,12 @@ class CategoryController extends Controller
         try {
             Category::create($request->all());
 
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.category.index')->withFragment('main-table')
                 ->with('success', 'Successfully Added');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error ' . $e->getMessage())
+                ->withFragment('main-table');
         }
     }
 

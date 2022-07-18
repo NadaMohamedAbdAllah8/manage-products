@@ -24,7 +24,7 @@
         <div class="card-body">
 
             @if (count($categories) != 0)
-            <table class="table table-dark">
+            <table class="table table-dark" id="main-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
