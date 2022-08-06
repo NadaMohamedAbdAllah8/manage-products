@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@includeIf('admin.layouts.header-without-login', ['status' => 'Not logged in yet'])
 @section('title')
 {{ $title ??'Login-Admin' }}
 @endsection
