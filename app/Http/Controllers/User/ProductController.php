@@ -49,8 +49,7 @@ class ProductController extends Controller
             $userId = Auth::guard('user')->user()->id;
 
             $userFavoriteProductExist = UserFavoriteProduct::
-                where('product_id', $productId)
-                ->where('user_id', $userId)->first();
+                where(['product_id' => $productId, 'user_id' => $userId])->first();
 
             if (!is_null($userFavoriteProductExist)) {
                 return redirect()->route('user.product.index')
