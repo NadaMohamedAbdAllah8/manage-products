@@ -20,7 +20,8 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Categories',
             'categories' => $categories,
-            'message' => 'Hello!'];
+            'message' => 'Hello!',
+        ];
 
         return view('admin.pages.categories.index', $data);
     }
@@ -72,15 +73,15 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
-            // Get products table pagiantion if it is set
-            $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+            // Get products table pagination if it is set
+            $paginationValue = $_GET['pagination'] ?? config('global.defaultPagination');
 
             $category = Category::findOrFail($id);
 
             $data = [
                 'title' => 'Category Details',
                 'category' => $category,
-                'products' => $category->products()->paginate($pagiantionValue),
+                'products' => $category->products()->paginate($paginationValue),
             ];
 
             return view('admin.pages.categories.show', $data);

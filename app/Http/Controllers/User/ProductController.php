@@ -82,13 +82,13 @@ class ProductController extends Controller
     public function showFavorites()
     {
         try {
-            $pagiantionValue = $_GET['pagination'] ?? config('global.defaultPagination');
+            $paginationValue = $_GET['pagination'] ?? config('global.defaultPagination');
 
             // the user can view all the favorite products regardless of whether that product
             // has a category or not; as the category can be deleted
 
             $userFavoritesProducts = Auth::guard('user')->user()
-                ->favoriteProducts()->paginate($pagiantionValue);
+                ->favoriteProducts()->paginate($paginationValue);
 
             $data = [
                 'title' => 'Favorites Product Details',
@@ -117,7 +117,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        $pagiantionValue = config('global.defaultPagination');
+        $paginationValue = config('global.defaultPagination');
 
         $products = Product::where('category_id', '!=', null)
             ->whereHas('category', function ($query) {
@@ -142,7 +142,7 @@ class ProductController extends Controller
             return array(
                 'title' => 'Products',
                 'status' => 'success',
-                'products' => $products->paginate($pagiantionValue),
+                'products' => $products->paginate($paginationValue),
                 'categories' => $categories,
             );
         } catch (\Exception $e) {
@@ -150,7 +150,7 @@ class ProductController extends Controller
                 'title' => 'Products',
                 'status' => 'error',
                 'error' => $e->getMessage(),
-                'products' => $products->paginate($pagiantionValue),
+                'products' => $products->paginate($paginationValue),
                 'categories' => $categories,
             );
         }
