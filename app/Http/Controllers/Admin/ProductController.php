@@ -50,7 +50,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|doesnt_contain_word_example',
             'category_id' => 'nullable|exists:categories,id',
         ]);
 
