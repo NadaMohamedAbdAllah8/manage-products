@@ -125,6 +125,10 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
 
+            if ($category->name == $request->name) {
+                $category->touch();
+            }
+
             $category->update($request->only('name'));
 
             return redirect()->route('admin.category.index')
