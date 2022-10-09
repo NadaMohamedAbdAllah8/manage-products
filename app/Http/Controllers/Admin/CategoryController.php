@@ -125,7 +125,7 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
 
-            $category->update($request->all());
+            $category->update($request->only('name'));
 
             return redirect()->route('admin.category.index')
                 ->with('success', 'Successfully Updated');
