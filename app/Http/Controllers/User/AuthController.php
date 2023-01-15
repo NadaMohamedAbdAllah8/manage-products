@@ -21,21 +21,18 @@ class AuthController extends Controller
         $user = User::where('name', $fields['name'])->first();
 
         // Check password
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
+        if (! $user || ! Hash::check($fields['password'], $user->password)) {
             return back()->with('error', 'Bad credentials');
         }
 
         // Login
         if (Auth::guard('user')->attempt(['name' => request('name'),
             'password' => request('password')])) {
-
             return redirect()->route('user.product.index')
                 ->with('success', 'Logged In Successfully');
-
         } else {
             return back()->with('error', 'Bad credentials');
         }
-
     }
 
     public function logout(Request $request)

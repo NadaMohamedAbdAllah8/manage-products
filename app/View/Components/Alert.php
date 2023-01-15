@@ -7,7 +7,8 @@ use Illuminate\View\Component;
 
 class Alert extends Component
 {
-    public $message = "";
+    public $message = '';
+
     public $type;
 
     /**
@@ -15,7 +16,7 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct($message, $type = "primary")
+    public function __construct($message, $type = 'primary')
     {
         $this->message = $message;
 

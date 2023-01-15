@@ -35,6 +35,5 @@ class ViewComposerServiceProvider extends ServiceProvider
                 'userName' => Auth::guard('user')->user()->name,
             ]);
         });
-
     }
 }

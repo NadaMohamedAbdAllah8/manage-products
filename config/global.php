@@ -5,6 +5,4 @@ return [
     'paginationFirstIncrease' => 20,
     'paginationSecondIncrease' => 25,
     'paginationThirdIncrease' => 30,
-]
-
-?>
+];

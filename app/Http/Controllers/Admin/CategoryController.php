@@ -57,9 +57,8 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.category.index')->withFragment('main-table')
                 ->with('success', 'Successfully Added');
-
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage())
+            return redirect()->back()->with('error', 'Error '.$e->getMessage())
                 ->withFragment('main-table');
         }
     }
@@ -86,9 +85,10 @@ class CategoryController extends Controller
 
             return view('admin.pages.categories.show', $data);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error '.$e->getMessage());
         }
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,7 +105,7 @@ class CategoryController extends Controller
 
             return view('admin.pages.categories.edit', $data);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error '.$e->getMessage());
         }
     }
 
@@ -134,7 +134,7 @@ class CategoryController extends Controller
             return redirect()->route('admin.category.index')
                 ->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error '.$e->getMessage());
         }
     }
 
@@ -155,7 +155,7 @@ class CategoryController extends Controller
                 ->with('success', 'Successfully Deleted');
         } catch (\Exception $e) {
             return redirect()->route('admin.category.index')
-                ->with('error', 'Error ' . $e->getMessage());
+                ->with('error', 'Error '.$e->getMessage());
         }
     }
 }

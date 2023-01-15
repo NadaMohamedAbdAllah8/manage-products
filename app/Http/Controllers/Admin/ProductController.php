@@ -59,9 +59,8 @@ class ProductController extends Controller
 
             return redirect()->route('admin.product.index')
                 ->with('success', 'Successfully Added');
-
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error'.$e->getMessage());
         }
     }
 
@@ -83,7 +82,7 @@ class ProductController extends Controller
 
             return view('admin.pages.products.show', $data);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error '.$e->getMessage());
         }
     }
 }

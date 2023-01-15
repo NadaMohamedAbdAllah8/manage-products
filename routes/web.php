@@ -32,7 +32,6 @@ Route::post('/admin/login', 'App\Http\Controllers\Admin\AuthController@login')
     ->name('admin.login');
 
 Route::group(['middleware' => ['auth:user']], function () {
-
     Route::post('user.logout', 'App\Http\Controllers\User\AuthController@logout')
         ->name('user.logout');
 
@@ -52,7 +51,6 @@ Route::group(['middleware' => ['auth:user']], function () {
 });
 
 Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
-
     Route::post('logout', 'App\Http\Controllers\Admin\AuthController@logout')
         ->name('logout');
 
@@ -77,5 +75,4 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
     });
 
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
-
 });

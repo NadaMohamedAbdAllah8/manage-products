@@ -28,8 +28,7 @@ class ProductController extends Controller
         $data = [
             'title' => 'Products',
             'products' => $products,
-            'categories' =>
-            DB::select(DB::raw('SELECT * FROM categories where deleted_at is null')),
+            'categories' => DB::select(DB::raw('SELECT * FROM categories where deleted_at is null')),
         ];
 
         return view('user.pages.products.index', $data);
@@ -48,10 +47,9 @@ class ProductController extends Controller
 
             $userId = Auth::guard('user')->user()->id;
 
-            $userFavoriteProductExist = UserFavoriteProduct::
-                where(['product_id' => $productId, 'user_id' => $userId])->first();
+            $userFavoriteProductExist = UserFavoriteProduct::where(['product_id' => $productId, 'user_id' => $userId])->first();
 
-            if (!is_null($userFavoriteProductExist)) {
+            if (! is_null($userFavoriteProductExist)) {
                 return redirect()->route('user.product.index')
                     ->with('error', 'Added Already');
             }
@@ -66,9 +64,8 @@ class ProductController extends Controller
 
             return redirect()->route('user.product.index')
                 ->with('success', 'Successfully Added');
-
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error'.$e->getMessage());
         }
     }
 
@@ -96,7 +93,7 @@ class ProductController extends Controller
 
             return view('user.pages.products.show-favorites', $data);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error '.$e->getMessage());
         }
     }
 
@@ -128,8 +125,8 @@ class ProductController extends Controller
 
             $categoriesId = $request->category_id;
 
-            if (!is_null($productName)) {
-                $products = $products->where('name', 'like', '%' . $productName . '%');
+            if (! is_null($productName)) {
+                $products = $products->where('name', 'like', '%'.$productName.'%');
             }
 
             if (isset($categoriesId)) {
@@ -138,20 +135,20 @@ class ProductController extends Controller
                 });
             }
 
-            return array(
+            return [
                 'title' => 'Products',
                 'status' => 'success',
                 'products' => $products->paginate($paginationValue),
                 'categories' => $categories,
-            );
+            ];
         } catch (\Exception $e) {
-            return array(
+            return [
                 'title' => 'Products',
                 'status' => 'error',
                 'error' => $e->getMessage(),
                 'products' => $products->paginate($paginationValue),
                 'categories' => $categories,
-            );
+            ];
         }
     }
 }
