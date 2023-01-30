@@ -15,45 +15,42 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-          <base href="">
-          <meta charset="utf-8" />
-          <title>Manage Products | @yield('title')</title>
-          <meta name="description" content="Manage Products" />
-          <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Manage Products | @yield('title')</title>
+    <meta name="description" content="Manage Products" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-          {{-- styles --}}
+    {{-- styles --}}
 
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-                    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-                    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-          <!-- Latest compiled and minified JavaScript -->
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                    crossorigin="anonymous">
-          </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
 
-          <!-- jQuery library -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-          <!-- Latest compiled JavaScript -->
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-          <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-          <link href="{{ asset('assets/css/pages_style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/pages_style.css') }}" rel="stylesheet" type="text/css" />
 
-          @yield('styles')
+    @yield('styles')
 
 </head>
 
 <body>
-          @include('inc.messages')
+    @include('inc.messages')
 
-          @yield('content')
+    @yield('content')
 
-          {{-- scrips --}}
-          <script type=" text/javascript" src="{{ asset('assets/js/make-input-read-only.js') }}"></script>
-          @yield('scripts')
+    {{-- scrips --}}
+    <script type=" text/javascript" src="{{ asset('assets/js/make-input-read-only.js') }}"></script>
+    @yield('scripts')
 </body>
