@@ -51,7 +51,7 @@
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $product['name'] }}</td>
-                        <td>{{ $product->category->name?? 'No category assigned' }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td>
                             <form action="{{ route('user.product.favorite',$product->id)}}" style="display: inline"
                                 method="POST">
