@@ -27,9 +27,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        Validator::extend('doesnt_contain_word_example',
+        Validator::extend(
+            'doesnt_contain_word_example',
             function ($attributes, $value) {
-                return ! str_contains($value, 'example');
-            }, 'Sorry, the string cannot include the work example in it');
+                return !str_contains($value, 'example');
+            },
+            'Sorry, the string cannot include the work example in it'
+        );
     }
 }
